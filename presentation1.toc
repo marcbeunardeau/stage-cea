@@ -1,0 +1,16 @@
+\beamer@endinputifotherversion {3.24pt}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Software Requirements}{4}{0}{2}
+\beamer@sectionintoc {3}{State of the Art}{5}{0}{3}
+\beamer@subsectionintoc {3}{1}{Trivium}{5}{0}{3}
+\beamer@subsectionintoc {3}{2}{PRESENT}{7}{0}{3}
+\beamer@subsectionintoc {3}{3}{PRINCE}{9}{0}{3}
+\beamer@sectionintoc {4}{PRIDE}{11}{0}{4}
+\beamer@subsectionintoc {4}{1}{Presentation}{11}{0}{4}
+\beamer@subsectionintoc {4}{2}{The Linear Layer}{17}{0}{4}
+\beamer@sectionintoc {5}{Differential Attack}{21}{0}{5}
+\beamer@sectionintoc {6}{SPECK}{22}{0}{6}
+\beamer@subsectionintoc {6}{1}{Presentation}{22}{0}{6}
+\beamer@sectionintoc {7}{Fault Attack}{26}{0}{7}
+\beamer@subsectionintoc {7}{1}{Bit-Flip Attack}{27}{0}{7}
+\beamer@subsectionintoc {7}{2}{Random Bit Fault}{30}{0}{7}
