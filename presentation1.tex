@@ -14,6 +14,8 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usepackage{pgf}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows,automata}
 
@@ -25,7 +27,10 @@
 
 \frame{\titlepage} 
 
-\frame{\frametitle{Table of contents}\tableofcontents} 
+\frame{\frametitle{Table of contents}
+\begin{multicols}{2}
+\tableofcontents
+\end{multicols}} 
 
 
 \section{Introduction} 
@@ -212,12 +217,15 @@ where $x_i = (x_i^{(1)},...,x_i^{(k)})$ with $x_i^{(j)} \in \mathbb{F}_2^{b_j}$
 
 
 
-\frame{frametitle{Finding $L_0$}
-
-
+\frame{\frametitle{Finding the Linear Layer}
+\begin{itemize}
+ \item Set $n=64$, $k=4$, $b_i=1$
+ \item Look for $L_0...L_3 \in \mathcal{M}_{16}(\mathbb{F}_2)$ with branch number 4 and achieving high depdencie.
+ \item Set a set of assembly instruction
+ \item Check after $N$ instruction if the matrix fulffil our criteria for $L_0$ ($N=7$ achieved)
+ \item Derive $L_i = P L_{i-1} Q$ with $P$, $Q$ permutation (found with Constraint Integer Programing) and the density of $L_i \vee L_{i-1}$ is maximum
+\end{itemize}
 }
-
-
 
 \section{Differential Attack}
 \frame{\frametitle{Principle}
@@ -229,13 +237,69 @@ where $x_i = (x_i^{(1)},...,x_i^{(k)})$ with $x_i^{(j)} \in \mathbb{F}_2^{b_j}$
 \end{itemize}
 }
 
+\frame{\frametitle{Notations}
+\begin{itemize}
+ \item $I_r$ input of the r-th round
+ \item $X_r$ after the round key additional of the r-th round
+ \item $Y_r$ after the S-box layer of the r-th round
+ \item $Z_r$ after the permutation of the r-th round
+ \item $W_r$ after the matrix of the r-th round
+ \item $O_r$ the output of the r-th round
+ \item $X[n_1,n_2...]$ the $n_1,n_2..$ nibbles of state $X$
+\end{itemize}
+}
+
+\subsection{Differential Analysis}
+\frame{\frametitle{S-Boxes}
+\begin{center}
+\includegraphics[scale=0.35]{s-boxes2}
+\end{center}
+}
+
+\frame{\frametitle{2 Rounds Characterisitcs}
+\begin{center}
+\includegraphics[scale=0.25]{2rounds2}
+\end{center}
+}
+
+\frame{\frametitle{Differential Analysis}
+\begin{center}
+\includegraphics[scale=0.25]{difanalysis2}
+\end{center}
+}
+
+\subsection{Attack}
+\frame{\frametitle{Data Collection}
+\begin{itemize}
+ \item Choose $2^{48}$ stuctures fix in nibbles 1,2,3,4,5,7,8,9,11,12,13,15,16 ($2^{23}$ pairs)
+ \item Verifiy $\Delta C[4,8,9,12,,13,16] = 0$ ($2^{-1}$ pairs left) 
+\end{itemize}
+}
+
+\frame{\frametitle{Key Recovery(1)}
+\begin{itemize}
+ \item Guess $(k_0 \oplus \mathcal{P}^{-1}(f_1(k_1)))[6]$
+ \item Look for $2^4$ pairs st. $\Delta Y_1[6] = 8$
+ \item $2^{-5}$ pairs left
+ \item same with $(k_0 \oplus \mathcal{P}^{-1}(f_1(k_1)))[10]$ and $(k_0 \oplus \mathcal{P}^{-1}(f_1(k_1)))[14]$
+ \item $2^{-13}$ pairs left
+\end{itemize}
+}
+
+\frame{\frametitle{Key Recovery(2)}
+\begin{itemize}
+ \item Guess $k_0[i]$, $i \in \left\{1,2,3,5,7,10,11,14,15\right\}$
+ \item
+\end{itemize}
+}
+
 \section{SPECK}
 \subsection{Presentation}
 
 \frame{\frametitle{Generalities}
 \begin{itemize}
  \item Introduced by Beaulieu \& Al (NSA) in 2013
- \item Feistel network
+ \item ARX network
  \item 48-128 bits blocks
  \item 96-256 bits key
  \item 22-34 rounds
